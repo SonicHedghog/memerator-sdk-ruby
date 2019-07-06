@@ -25,6 +25,18 @@ class Memerator
     Profile.new(data)
   end
 
+  # @ Get a meme by its id
+  # @param [String] the Meme ID
+  # @return [Meme] the meme
+  def meme(id)
+    begin
+      data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/#{id}", Authorization: @token))
+    rescue RestClient::NotFound
+      raise Memerator::Errors::InvalidMeme, "This meme doesn't exist!"
+    end
+    Meme.new(data)
+  end
+
   # Get the token from instantiation
   attr_reader :token
 end
