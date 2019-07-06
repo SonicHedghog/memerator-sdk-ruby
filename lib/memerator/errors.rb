@@ -11,4 +11,7 @@ module Memerator::Errors
 
   # Raised if you don't have access to the requested resource
   class NoPermission < StandardError; end
+
+  # Raised if you try to modify a disabled meme.
+  class DisabledMeme < StandardError; end
 end
