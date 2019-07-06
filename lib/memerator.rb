@@ -56,6 +56,12 @@ class Memerator
     notifications.map { |notification_data| Notification.new(notification_data) }
   end
 
+  # @return [Array<Report>] your reports
+  def reports
+    reports = JSON.parse(RestClient.get('https://memerator.me/api/v1/reports', Authorization: @token))
+    reports.map { |report_data| Report.new(report_data) }
+  end
+
   # Get the token from instantiation
   attr_reader :token
 end
@@ -64,6 +70,7 @@ end
 require_relative 'memerator/meme'
 require_relative 'memerator/errors'
 require_relative 'memerator/stats'
+require_relative 'memerator/report'
 require_relative 'memerator/notification'
 require_relative 'memerator/user'
 require_relative 'memerator/profile'
