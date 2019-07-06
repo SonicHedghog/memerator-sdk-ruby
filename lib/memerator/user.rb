@@ -20,6 +20,21 @@ class Memerator::User
     @data['bio']
   end
 
+  # @return [Integer] the amount of followers this user has
+  def followers
+    @data['stats']['followers']
+  end
+
+  # @return [Integer] the amount of users this user is following
+  def following
+    @data['stats']['following']
+  end
+
+  # @return [Integer] the amount of memes this user has
+  def memes
+    @data['stats']['memes']
+  end
+
   # @return [true, false] the user's verification status
   def verified?
     @data['perks']['verified']
