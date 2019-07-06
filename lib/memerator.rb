@@ -34,14 +34,14 @@ class Memerator
     rescue RestClient::NotFound
       raise Memerator::Errors::InvalidMeme, "This meme doesn't exist!"
     end
-    Meme.new(data)
+    Meme.new(data, token: @token)
   end
 
   # Get a random meme
   # @return [Meme] the meme
   def randommeme
     data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/random", Authorization: @token))
-    Meme.new(data)
+    Meme.new(data, token: @token)
   end
 
   # @return [Stats] the site's stats
