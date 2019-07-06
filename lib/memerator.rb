@@ -30,5 +30,7 @@ class Memerator
 end
 
 # Require files.
+require_relative 'memerator/meme'
+require_relative 'memerator/errors'
 require_relative 'memerator/user'
 require_relative 'memerator/profile'
