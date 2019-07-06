@@ -44,6 +44,12 @@ class Memerator
     Meme.new(data)
   end
 
+  # @return [Stats] the site's stats
+  def stats
+    data = JSON.parse(RestClient.get('https://memerator.me/api/v1/stats', Authorization: @token))
+    Stats.new(data)
+  end
+
   # Get the token from instantiation
   attr_reader :token
 end
@@ -51,5 +57,6 @@ end
 # Require files.
 require_relative 'memerator/meme'
 require_relative 'memerator/errors'
+require_relative 'memerator/stats'
 require_relative 'memerator/user'
 require_relative 'memerator/profile'
