@@ -22,7 +22,7 @@ class Memerator
   # @return [Profile] your profile
   def profile
     data = JSON.parse(RestClient.get('https://memerator.me/api/v1/profile/me', Authorization: @token))
-    Profile.new(data)
+    Profile.new(data, token: @token)
   end
 
   # Get a meme by its id
