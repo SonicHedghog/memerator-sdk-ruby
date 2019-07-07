@@ -1,7 +1,12 @@
+# Errors are the death of us all. If you get an error, delete your account.
 module Memerator::Errors
   # Raised if a selected meme is Invalid.
   # Probably means it doesn't exist.
   class InvalidMeme < ArgumentError; end
+
+  # Raised if a selected user is invalid.
+  # Probably means they doesn't exist.
+  class InvalidUser < ArgumentError; end
 
   # Raised if your token sucks
   class InvalidToken < ArgumentError; end

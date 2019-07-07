@@ -11,12 +11,16 @@ class Memerator
   end
 
   # @param perso [String, Integer] the ID of the user, or their username
+  # @raise [Memerator::Errors::InvalidUser] if the user does not exist
   # @return [User] the user's profile
   def user(perso)
     return profile if perso.downcase == 'me'
 
     data = JSON.parse(RestClient.get("https://memerator.me/api/v1/profile/#{perso}", Authorization: @token))
+
     User.new(data)
+  rescue RestClient::NotFound
+    raise Memerator::Errors::InvalidUser, "This user doesn't exist!"
   end
 
   # @return [Profile] your profile
@@ -26,15 +30,15 @@ class Memerator
   end
 
   # Get a meme by its id
-  # @param [String] the Meme ID
+  # @param id [String] the Meme ID
+  # @raise [Memerator::Errors::InvalidMeme] if the meme does not exist.
   # @return [Meme] the meme
   def meme(id)
-    begin
-      data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/#{id}", Authorization: @token))
-    rescue RestClient::NotFound
-      raise Memerator::Errors::InvalidMeme, "This meme doesn't exist!"
-    end
+    data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/#{id}", Authorization: @token))
+
     Meme.new(data, token: @token)
+  rescue RestClient::NotFound
+    raise Memerator::Errors::InvalidMeme, "This meme doesn't exist!"
   end
 
   # Get a random meme
