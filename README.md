@@ -12,10 +12,10 @@ The gem is currently in Beta! Until you see that nice 1.0.0, expect bugs!
 
 What the API has that this gem can't do yet:
 
-* Set your username
+~~* Set your username~~ Implemented in next release :)
 * Get recent memes
 * Get top memes
-* Get top memers
+~~* Get top memers~~ Implemented in next release :)
 * Submit a meme
 
 ## Usage

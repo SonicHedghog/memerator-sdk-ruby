@@ -66,6 +66,17 @@ class Memerator
     reports.map { |report_data| Report.new(report_data) }
   end
 
+  # Get the top memers (by meme count)
+  # @return [Hash<User, Integer>] the top memers in a hash of user to their memes
+  def topmemers
+    users = JSON.parse(RestClient.get('https://memerator.me/api/v1/topmemers', Authorization: @token))
+    top = {}
+    users.each do |woah|
+      top[User.new(woah['profile'])] = woah['memes']
+    end
+    top
+  end
+
   # Get the token from instantiation
   attr_reader :token
 end
