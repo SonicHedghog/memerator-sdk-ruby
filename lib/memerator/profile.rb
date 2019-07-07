@@ -17,6 +17,23 @@ class Memerator::Profile < Memerator::User
     Time.parse(@data['pro']['since'])
   end
 
+  # Set your username
+  # Username Requirements:
+  #   Be between 2 and 32 characters.
+  #   Not be in use
+  #   Can't be only numbers
+  #   Can't have special characters Allowed: (A-Z|a-z|0-9|_|.)
+  # @return [true] if the username was changed
+  # @raise [ArgumentError] if the requirements are not met
+  def username=(new_username)
+    response = JSON.parse(RestClient.post("https://memerator.me/api/v1/profile/me", { "username" => new_username }.to_json, Authorization: @token, 'Content-Type': :json))
+    @data['username'] = new_username
+    response['success']
+  rescue RestClient::BadRequest => error
+    why = JSON.parse(error.response.body)['error']
+    raise ArgumentError, "Your username does not match the requirements! #{why}"
+  end
+
   # Update your Bio!
   # @return [true] the success
   def bio=(new_bio)
