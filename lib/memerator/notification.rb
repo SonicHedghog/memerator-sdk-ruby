@@ -30,7 +30,7 @@ class Memerator::Notification
     @data['raw']
   end
 
-  # The type is mostly used internally but is useful for cliens implementing notification sorting.
+  # The type is mostly used internally but is useful for clients implementing notification sorting.
   # Type 0 is a meme rating notification
   # Type 1 is a follow notification
   # Type 2 is a notice.
@@ -50,7 +50,7 @@ class Memerator::Notification
 
   # For meme ratings, the meme rating is returned, if you need it!
   # @return [Integer, nil] the meme rating, if type == 0
-  def memeid
+  def rating
     return nil if @data['meme'].nil?
 
     @data['meme']['rating']
