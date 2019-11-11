@@ -5,7 +5,7 @@ module Memerator::Errors
   class InvalidMeme < ArgumentError; end
 
   # Raised if a selected user is invalid.
-  # Probably means they doesn't exist.
+  # Probably means they don't exist.
   class InvalidUser < ArgumentError; end
 
   # Raised if your token sucks
