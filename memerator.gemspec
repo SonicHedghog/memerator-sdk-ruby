@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name = 'memerator'
-  s.version = '0.1.0'
-  s.summary = 'The Memerator.me API Libary wrapper in Ruby'
-  s.description = 'The Memerator.me API Libary wrapper in Ruby.'
+  s.version = '0.1.1'
+  s.summary = 'The Memerator.me API Library wrapper in Ruby'
+  s.description = 'The Memerator.me API Library wrapper in Ruby.'
   s.authors = ['Chew']
   s.email = 'chew@memerator.me'
   s.files = Dir['lib/**/*.rb',  'README.md']
