@@ -16,7 +16,7 @@ class Memerator
   def user(perso)
     return profile if perso.downcase == 'me'
 
-    data = JSON.parse(RestClient.get("https://memerator.me/api/v1/profile/#{perso}", Authorization: @token))
+    data = JSON.parse(RestClient.get("https://api.memerator.me/v1/profile/#{perso}", Authorization: @token))
 
     User.new(data)
   rescue RestClient::NotFound
@@ -25,7 +25,7 @@ class Memerator
 
   # @return [Profile] your profile
   def profile
-    data = JSON.parse(RestClient.get('https://memerator.me/api/v1/profile/me', Authorization: @token))
+    data = JSON.parse(RestClient.get('https://api.memerator.me/v1/profile/me', Authorization: @token))
     Profile.new(data, token: @token)
   end
 
@@ -34,7 +34,7 @@ class Memerator
   # @raise [Memerator::Errors::InvalidMeme] if the meme does not exist.
   # @return [Meme] the meme
   def meme(id)
-    data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/#{id}", Authorization: @token))
+    data = JSON.parse(RestClient.get("https://api.memerator.me/v1/meme/#{id}", Authorization: @token))
 
     Meme.new(data, token: @token)
   rescue RestClient::NotFound
@@ -44,32 +44,32 @@ class Memerator
   # Get a random meme
   # @return [Meme] the meme
   def randommeme
-    data = JSON.parse(RestClient.get("https://memerator.me/api/v1/meme/random", Authorization: @token))
+    data = JSON.parse(RestClient.get("https://api.memerator.me/v1/meme/random", Authorization: @token))
     Meme.new(data, token: @token)
   end
 
   # @return [Stats] the site's stats
   def stats
-    data = JSON.parse(RestClient.get('https://memerator.me/api/v1/stats', Authorization: @token))
+    data = JSON.parse(RestClient.get('https://api.memerator.me/v1/stats', Authorization: @token))
     Stats.new(data)
   end
 
   # @return [Array<Notification>] your notifications
   def notifications
-    notifications = JSON.parse(RestClient.get('https://memerator.me/api/v1/notifications', Authorization: @token))
+    notifications = JSON.parse(RestClient.get('https://api.memerator.me/v1/notifications', Authorization: @token))
     notifications.map { |notification_data| Notification.new(notification_data) }
   end
 
   # @return [Array<Report>] your reports
   def reports
-    reports = JSON.parse(RestClient.get('https://memerator.me/api/v1/reports', Authorization: @token))
+    reports = JSON.parse(RestClient.get('https://api.memerator.me/v1/reports', Authorization: @token))
     reports.map { |report_data| Report.new(report_data) }
   end
 
   # Get the top memers (by meme count)
   # @return [Hash<User, Integer>] the top memers in a hash of user to their memes
   def topmemers
-    users = JSON.parse(RestClient.get('https://memerator.me/api/v1/topmemers', Authorization: @token))
+    users = JSON.parse(RestClient.get('https://api.memerator.me/v1/topmemers', Authorization: @token))
     top = {}
     users.each do |woah|
       top[User.new(woah['profile'])] = woah['memes']

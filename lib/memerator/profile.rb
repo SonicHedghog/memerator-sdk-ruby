@@ -26,7 +26,7 @@ class Memerator::Profile < Memerator::User
   # @return [true] if the username was changed
   # @raise [ArgumentError] if the requirements are not met
   def username=(new_username)
-    response = JSON.parse(RestClient.post("https://memerator.me/api/v1/profile/me", { "username" => new_username }.to_json, Authorization: @token, 'Content-Type': :json))
+    response = JSON.parse(RestClient.post("https://api.memerator.me/v1/profile/me", { "username" => new_username }.to_json, Authorization: @token, 'Content-Type': :json))
     @data['username'] = new_username
     response['success']
   rescue RestClient::BadRequest => error
@@ -37,7 +37,7 @@ class Memerator::Profile < Memerator::User
   # Update your Bio!
   # @return [true] the success
   def bio=(new_bio)
-    response = JSON.parse(RestClient.post("https://memerator.me/api/v1/profile/me", { "bio" => new_bio }.to_json, Authorization: @token, 'Content-Type': :json))
+    response = JSON.parse(RestClient.post("https://api.memerator.me/v1/profile/me", { "bio" => new_bio }.to_json, Authorization: @token, 'Content-Type': :json))
     @data['bio'] = new_bio
     response['success']
   end

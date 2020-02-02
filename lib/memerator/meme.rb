@@ -65,7 +65,7 @@ class Memerator::Meme
   # @raise [Memerator::Errors::InvalidToken] if your token is bad.
   # @return [true] when successful
   def disable!
-    response = JSON.parse(RestClient.put("https://memerator.me/api/v1/meme/#{memeid}/disable", {}, Authorization: @token))
+    response = JSON.parse(RestClient.put("https://api.memerator.me/v1/meme/#{memeid}/disable", {}, Authorization: @token))
     @data['disabled'] = true
     response['success']
   rescue RestClient::NotFound
@@ -82,7 +82,7 @@ class Memerator::Meme
   # @raise [Memerator::Errors::InvalidToken] if your token is bad.
   # @return [true] when successful
   def enable!
-    response = JSON.parse(RestClient.put("https://memerator.me/api/v1/meme/#{memeid}/enable", {}, Authorization: @token))
+    response = JSON.parse(RestClient.put("https://api.memerator.me/v1/meme/#{memeid}/enable", {}, Authorization: @token))
     @data['disabled'] = false
     response['success']
   rescue RestClient::NotFound
@@ -101,7 +101,7 @@ class Memerator::Meme
   def caption=(newcap)
     raise Memerator::Errors::DisabledMeme, "This meme is disabled and can't be interacted with" if disabled?
 
-    response = JSON.parse(RestClient.put("https://memerator.me/api/v1/meme/#{memeid}/caption", {"caption" => newcap}.to_json, Authorization: @token, 'Content-Type': :json))
+    response = JSON.parse(RestClient.put("https://api.memerator.me/v1/meme/#{memeid}/caption", {"caption" => newcap}.to_json, Authorization: @token, 'Content-Type': :json))
     @data['caption'] = newcap
     response['success']
   rescue RestClient::NotFound
@@ -135,7 +135,7 @@ class Memerator::Meme
     raise Memerator::Errors::DisabledMeme, "This meme is disabled and can't be interacted with" if disabled?
     raise ArgumentError, "Your rating is bad mate!" if rating > 5 || rating < 1 || rating.to_i != rating
 
-    response = JSON.parse(RestClient.post("https://memerator.me/api/v1/meme/#{memeid}/rate", {"rating" => rating}.to_json, Authorization: @token, 'Content-Type': :json))
+    response = JSON.parse(RestClient.post("https://api.memerator.me/v1/meme/#{memeid}/rate", {"rating" => rating}.to_json, Authorization: @token, 'Content-Type': :json))
     response['success']
   rescue RestClient::NotFound
     raise Memerator::Errors::NoPermission, "your token doesn't grant you access to this meme"
