@@ -83,6 +83,7 @@ end
 
 # Require files.
 require_relative 'memerator/meme'
+require_relative 'memerator/comment'
 require_relative 'memerator/errors'
 require_relative 'memerator/stats'
 require_relative 'memerator/report'
