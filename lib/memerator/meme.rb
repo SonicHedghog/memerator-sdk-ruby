@@ -48,6 +48,12 @@ class Memerator::Meme
     @data['permalink']
   end
 
+  # @return [Array<Comment>] the comments
+  def comments
+    comments = JSON.parse(RestClient.get("https://api.memerator.me/v1/meme/#{memeid}/comments", Authorization: @token))
+    comments.map { |comment_data| Comment.new(comment_data) }
+  end
+
   # Usually, the only people who can see disabled memes are Staff and the owners of the meme.
   # This will most likely always be false.
   # @return [true, false] the meme disabled status.
