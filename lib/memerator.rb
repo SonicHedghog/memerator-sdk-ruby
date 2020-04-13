@@ -29,6 +29,23 @@ class Memerator
     Profile.new(data, token: @token)
   end
 
+  # @return [Array<Meme>] your memes
+  def mymemes
+    memes = JSON.parse(RestClient.get('https://api.memerator.me/v1/mymemes', Authorization: @token))
+    memes.map { |meme_data| Meme.new(meme_data) }
+  end
+
+  # @param amount [Integer] how many memes you want to get. max 25
+  # @return [Array<Meme>] recent amount of memes
+  # @raise [ArgumentError] if amount is not between 1 and 25
+  def recent_memes(amount = 5)
+    amount = amount.to_i
+    raise ArgumentError, "Please enter a valid amount between 1 and 25" unless amount.between?(1, 25)
+
+    memes = JSON.parse(RestClient.get("https://api.memerator.me/v1/meme/recents?amount=#{amount}", Authorization: @token))
+    memes.map { |meme_data| Meme.new(meme_data) }
+  end
+
   # Get a meme by its id
   # @param id [String] the Meme ID
   # @raise [Memerator::Errors::InvalidMeme] if the meme does not exist.

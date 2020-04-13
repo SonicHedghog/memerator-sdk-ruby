@@ -8,7 +8,6 @@ The gem is currently in Beta! Until you see that nice 1.0.0, expect bugs!
 
 What the API has that this gem can't do yet:
 
-* Get recent memes
 * Get top memes
 * Submit a meme
 * Other things probably, they don't pay me enough
