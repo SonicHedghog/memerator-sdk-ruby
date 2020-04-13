@@ -1,10 +1,6 @@
 # Memerator API for Ruby
 
-A ruby library for Memerator.
-
-## What is this for?
-
-I mean, why not.
+The official Ruby API library for Memerator.
 
 ## Disclaimer
 
@@ -12,11 +8,10 @@ The gem is currently in Beta! Until you see that nice 1.0.0, expect bugs!
 
 What the API has that this gem can't do yet:
 
-~~* Set your username~~ Implemented in next release :)
 * Get recent memes
 * Get top memes
-~~* Get top memers~~ Implemented in next release :)
 * Submit a meme
+* Other things probably, they don't pay me enough
 
 ## Usage
 
@@ -39,7 +34,7 @@ Example for getting profile.
 
 ## Lost? allowsMultipleStreams?
 
-We have a nice helpful support channel on our official Discord Server! Join with [this link](https://discord.gg/FxjjnSF). IRC lover? Join #memerator on irc.chew.pro or irc.freenode.net
+We have a nice helpful support channel on our official Discord Server! Join with [this link](https://discord.gg/FxjjnSF).
 
 ## Documentation
 
