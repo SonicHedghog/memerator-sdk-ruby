@@ -23,7 +23,7 @@ class Memerator::Meme
     @data['url']
   end
 
-  # @return [Float] the total amount of ratings.
+  # @return [Integer] the total amount of ratings.
   def total_ratings
     @data['rating']['total']
   end
