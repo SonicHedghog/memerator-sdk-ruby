@@ -45,4 +45,4 @@ We love contributors! Feel free to open a PR and we will review it.
 
 ## But ruby sucks
 
-no it's great
+then use python
